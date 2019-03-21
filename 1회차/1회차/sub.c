@@ -6,6 +6,8 @@ int total = 0;
 
 void make_dict1(char buffer[]) {
 
+	/* char 배열을 이렇게 0으로 초기화해야하는 이유는?  */
+	/* 일반적으로 배열을 이렇게 초기화해야한다는 것 자체가 뭔가 로직이 자연스럽거나 효율적이지 않음을 시사 */
 	char first[MAX] = { NULL }, second[MAX] = { NULL }, third[MAX] = { NULL };
 
 	char *token;
@@ -94,16 +96,17 @@ void read_dict(char *token) {
 		char buffer[MAX] = { NULL };
 		int i = 0, j = 0;
 
-		if (strcmp(temp, "\n") == 0) {
+		if (strcmp(temp, "\n") == 0) {. /* temp == '\n'이 나을 듯 */
 			continue;
 		}
 
+		/* -52가 뭐지? ASCII 코드값을 이런 식으로 시용하는 것은 좋지 않은 습관. comment라도 달아주면 좋겠음 */
 		while (temp[i] != -52) {
-			if (i == strlen(temp)) {
+			if (i == strlen(temp)) {   /* 무슨 의미인지 잘 와닫지 않음. 훨씬 직관적인 logic이 가능할 듯 */
 				break;
 			}
 
-			if (temp[i] < 0) {
+			if (temp[i] < 0) {   /* 무슨 의미인지 잘 와닫지 않음. 훨씬 직관적인 logic이 가능할 듯 */
 				i++;
 				continue;
 			}
